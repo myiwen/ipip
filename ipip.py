@@ -10,6 +10,7 @@ _unpack_V = lambda b: struct.unpack("<L", b)
 _unpack_N = lambda b: struct.unpack(">L", b)
 _unpack_C = lambda b: struct.unpack("B", b)
 
+
 class IP:
     offset = 0
     index = 0
@@ -47,7 +48,7 @@ class IP:
         while start < max_comp_len:
             if index[start:start + 4] >= nip:
                 index_offset, = _unpack_V(index[start + 4:start + 7] + chr(0).encode('utf-8'))
-                index_length, = _unpack_C(index[start + 7])
+                index_length, = _unpack_C(index[start + 7:start + 7 + 1])
                 break
             start += 8
 
